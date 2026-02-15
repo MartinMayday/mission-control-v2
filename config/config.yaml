@@ -11,17 +11,24 @@ openclaw_instances:
   - name: "openclaw-staging"
     host: "192.168.100.202"
     port: 22
-    user: "root"
+    user: "nosrc"
     type: "proxmox"
     vm_id: 303
-    openclaw_port: 8080
+    openclaw_port: 18789
   - name: "openclaw-live"
     host: "192.168.100.202"
     port: 22
-    user: "root"
+    user: "nosrc"
     type: "proxmox"
     vm_id: 301
-    openclaw_port: 8080
+    openclaw_port: 18789
+  - name: "openclaw-live"
+    host: "192.168.100.202"
+    port: 22
+    user: "nosrc"
+    type: "proxmox"
+    vm_id: 301
+    openclaw_port: 18789
 orbstack:
   enabled: false
 monitoring:

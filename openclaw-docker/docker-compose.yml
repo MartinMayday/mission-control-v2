@@ -1,0 +1,113 @@
+version: '3.8'
+
+# =============================================================================
+# OpenClaw Minimalist Docker Deployment
+# =============================================================================
+# Security-focused deployment with:
+# - Version 2026.1.29+ (patches CVE-2026-25253 and CVE-2026-24763)
+# - Localhost-only binding (prevents Shodan scanning on port 18789)
+# - Read-only filesystem with dropped capabilities
+# - Internal network (no public internet exposure)
+# =============================================================================
+
+services:
+  openclaw:
+    # CRITICAL: Use version 2026.1.29 or later to patch critical CVEs
+    image: openclaw/openclaw:2026.1.29
+    container_name: openclaw
+    restart: unless-stopped
+
+    # Resource limits (adjust based on your needs)
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+    # Security hardening - Docker level
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+
+    # Environment configuration
+    environment:
+      # Safe mode: Disable risky features
+      - OPENCLAW_SAFE_MODE=1
+      # Disable telemetry
+      - OPENCLAW_TELEMETRY=0
+      # Enable MCP integration
+      - OPENCLAW_MCP_ENABLED=1
+      # Bind to localhost only (CRITICAL: prevents Shodan exposure)
+      - OPENCLAW_HOST=127.0.0.1
+      - OPENCLAW_PORT=8080
+      # Log level for troubleshooting
+      - NODE_ENV=production
+
+    # Volume mounts for persistence
+    volumes:
+      # Configuration directory
+      - openclaw_config:/home/openclaw/.config/openclaw:rw
+      # Data directory (skills, logs, cache)
+      - openclaw_data:/home/openclaw/.local/share/openclaw:rw
+      # Temp directory (required for some operations)
+      - openclaw_tmp:/tmp:rw
+
+    # Network isolation
+    networks:
+      - openclaw_net
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Sidecar MCP bridge for Claude Code integration (optional)
+  # Comment out if not using Claude Code integration
+  mcp-bridge:
+    image: openclaw/mcp-bridge:latest
+    container_name: openclaw-mcp-bridge
+    restart: unless-stopped
+    depends_on:
+      - openclaw
+    ports:
+      # Expose ONLY to localhost, not 0.0.0.0
+      - "127.0.0.1:3000:3000"
+    environment:
+      - OPENCLAW_HOST=openclaw
+      - OPENCLAW_PORT=8080
+      - MCP_BRIDGE_LOG_LEVEL=info
+    networks:
+      - openclaw_net
+    # Security hardening for bridge
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+
+volumes:
+  # Persist configuration across container restarts
+  openclaw_config:
+    driver: local
+  # Persist data (skills, logs, chat history)
+  openclaw_data:
+    driver: local
+  # Temporary files
+  openclaw_tmp:
+    driver: local
+
+networks:
+  # Internal bridge network - no public internet access
+  openclaw_net:
+    driver: bridge
+    internal: true

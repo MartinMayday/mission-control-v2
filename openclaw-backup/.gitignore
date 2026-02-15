@@ -1,0 +1,12 @@
+# Security: Exclude credentials and sensitive data
+.env
+*.key
+*.pem
+credentials/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

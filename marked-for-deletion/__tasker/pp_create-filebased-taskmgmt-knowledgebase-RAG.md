@@ -1,0 +1,66 @@
+create a markdown file-based system project-assignment and task management system we can use to scope out ideas/problems to solve and push to backlog of task-management system. then deploy up to 8 subagents to download all relevant repo to local dedicated knowledgebase (file-based RAG, using lancedb, txtai, qdrant, redis, crawl4ai, crawl4ai-rag-mcp or crawl4ai-mcp) then add repo-manifest to the local knowledgebase to ingest repo-manifest: 
+(Research, analyse, determiner what to keep / defer / fork / cancel /park for later)
+inspiration-or-convert-to-skills-or-plugins:
+- awesome-openclaw-skills='gitingest_voltagent-awesome-openclaw-skills_15-FEB-2026.txt'
+- defence-skill-scanner='gitingest_cisco-ai-defense-skill-scanner_15-FEB-2026.txt'
+- gitingest_coreworxlab-caal.txt
+- gitingest_volkisai-codespring-boilerplate.txt
+- gitingest_ruvnet-claude-flow-17-JAN-2026.txt
+- gitingest_theaiautomators-claude-code-agentic-rag-masterclass_29-JAN-2026.txt
+- gitingest_ruvnet-claude-flow-03-FEB-2026.txt
+- gitingest_theaiautomators-deepeval-wrapper_12-FEB-2026.txt
+- gitingest_eleutherai-lm-evaluation-harness_12-FEB-2026.txt
+- gitingest_openai-frontier-evals_12-FEB-2026.txt
+- gitingest_openai-evals_12-FEB-2026.txt
+- gitingest_theaiautomators-claude-code-agentic-rag-masterclass_13-FEB-2026.txt
+- gitingest_lfnovo-open-notebook_13-FEB-2026.txt
+- gitingest_snarktank-antfarm_15-FEB-2026.txt
+- gitingest_pydantic-monty_15-FEB-2026.txt
+- gitingest_bmad-code-org-bmad-method_15-FEB-2026.txt
+- gitingest_buildermethods-agent-os_15-FEB-2026.txt
+- gitingest_firecrawl-hive_15-FEB-2026.txt
+- gitingest_firecrawl-openwork_15-FEB-2026.txt
+- gitingest_firecrawl-html-to-markdown_15-FEB-2026.txt
+- gitingest_firecrawl-open-scouts_15-FEB-2026.txt
+- gitingest_firecrawl-open-lovable_15-FEB-2026.txt
+- gitingest_firecrawl-fastmcp_15-FEB-2026.txt
+- gitingest_firecrawl-fireplexity_15-FEB-2026.txt
+- gitingest_firecrawl-open-researche_15-FEB-2026.txt
+- gitingest_firecrawl-llmstxt-generator_15-FEB-2026.txt
+- gitingest_firecrawl-firesearch_15-FEB-2026.txt
+- gitingest_firecrawl-mcp-typescript-sdk_15-FEB-2026.txt
+- gitingest_thedotmack-claude-mem_15-FEB-2026.txt
+- gitingest_steveyegge-beads_15-FEB-2026.txt
+- gitingest_mixedbread-ai-mgrep_15-FEB-2026.txt
+- gitingest_mixedbread-ai-mixedbread-ts_15-FEB-2026.txt
+- gitingest_mixedbread-ai-mxbai-rerank_15-FEB-2026.txt
+- gitingest_dhanji-g3_15-FEB-2026.txt
+- gitingest_dhanji-g3_goose-experiements.txt
+- gitingest_agent0ai-agent-zero_15-FEB-2026.txt
+- gitingest_unclecode-crawl4ai_15-FEB-2026.txt
+- gitingest_coleam00-archon_15-FEB-2026.txt
+- gitingest_coleam00-mcp-crawl4ai-rag_15-FEB-2026.txt
+- gitingest_oneredoak-claude-code-workflows.txt
+- gitingest_repo-reference-superclaude-framework.md
+- gitingest_modelcontextprotocol-registry.txt
+- gitingest_BeaconBay-ck-search.txt
+- gitingest_anthropics-claude-quickstarts-long-running-harness-demo.txt
+- gitingest_confident-ai-deepeval.txt
+- gitingest_dhanji-g3_goose-experiments.txt
+- gitingest_davidkimai-context-engineering.txt
+- gitingest_volkisai-codespring-boilerplate.txt
+- gitingest_coreworxlab-caal.txt
+- gitingest_theaiautomators-claude-code-agentic-rag-masterclass_29-JAN-2026.txt
+- gitingest_ruvnet-claude-flow-03-FEB-2026.txt
+- gitingest_theaiautomators-deepeval-wrapper_12-FEB-2026.txt
+- gitingest_eleutherai-lm-evaluation-harness_12-FEB-2026.txt
+- gitingest_openai-frontier-evals_12-FEB-2026.txt
+- gitingest_openai-evals_12-FEB-2026.txt
+- gitingest_theaiautomators-claude-code-agentic-rag-masterclass_13-FEB-2026.txt
+- gitingest_theaiautomators-insights-lm-local-package_13-FEB-2026
+- gitingest_lfnovo-open-notebook_13-FEB-2026.txt
+- 
+- more coming later ... . ensure to first check full system before assuming openclaw is not installed, you can not depend on being lazy and assumption (openclaw worked before cloning vm_id 301 and starting VM_id 303) install and implement • happy-repo-gitingest='gitingest_slopus-happy_15-FEB-2026.txt'
+• pai-repo-gitingest='gitingest_danielmiessler-personal_ai_infrastructure-15-FEB-2026.txt'
+• gsd-repo-gitingest='gitingest_gsd-build-get-shit-done_15-FEB-2026.txt'
+• gitingest_jzineldin-mission-control_15-FEB-2026.txt  . use the 8 spawned swarm of subagents to help research, investigate, analyse, engineeer, code-review, code-enhance, debug, bugfix, write documentation, implement repo's, architect and build the openclaw system with mission-control center 
