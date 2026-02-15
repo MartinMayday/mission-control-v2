@@ -23,8 +23,8 @@ class ProxmoxClient:
                 self._client = ProxmoxAPI(
                     self.config.host,
                     user=self.config.user,
-                    token_id=self.config.token_id,
-                    token_secret=self.config.token_secret,
+                    token_name=self.config.token_id,
+                    token_value=self.config.token_secret,
                     verify_ssl=self.config.verify_ssl,
                     timeout=self.config.timeout,
                 )
@@ -53,7 +53,11 @@ class ProxmoxClient:
     def get_vm_status(self, vmid: int) -> dict:
         client = self.connect()
         try:
-            status = client.nodes(client.nodes.get()[0]["node"]).qemu(vmid).status.get()
+            node_name = client.nodes.get()[0]["node"]
+            status = client.nodes(node_name).qemu(vmid).status("current").get()
+            # Handle both dict and list responses
+            if isinstance(status, list):
+                status = status[0] if status else {"status": "unknown"}
             return {
                 "vmid": vmid,
                 "status": status.get("status", "unknown"),

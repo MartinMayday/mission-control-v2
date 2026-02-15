@@ -24,21 +24,25 @@ Edit `config/config.yaml` to configure your OpenCLAW instances:
 
 ```yaml
 openclaw_instances:
-  - name: dev-instance
-    host: 192.168.1.100
+  - name: ocdev
+    host: 192.168.1.203
     port: 22
-    user: root
+    user: nosrc
     type: proxmox
-    vm_id: 100
-    openclaw_port: 8080
+    vm_id: 303
+    openclaw_port: 18789
 
 proxmox:
-  host: proxmox.local
+  host: proxmox.homelab.local
   port: 8006
   user: root@pam
+  HostName: 192.168.100.201
+  Port: 22
+  IdentityFile: ~/.ssh/id_ed25519_coder
   token_id: your-token-id
   token_secret: your-token-secret
   verify_ssl: false
+
 ```
 
 ### Environment Variables
@@ -46,7 +50,7 @@ proxmox:
 For sensitive credentials, you can use environment variables instead of storing them in config.yaml:
 
 ```bash
-export PROXMOX_HOST="proxmox.local"
+export PROXMOX_HOST="proxmox.homelab.local"
 export PROXMOX_TOKEN_ID="your-token-id"
 export PROXMOX_TOKEN_SECRET="your-token-secret"
 ```
@@ -63,21 +67,21 @@ openclaw-mgmt list
 
 ```bash
 openclaw-mgmt status
-openclaw-mgmt status --name dev-instance
+openclaw-mgmt status --name ocdev
 ```
 
 ### Start/Stop/Restart Instances
 
 ```bash
-openclaw-mgmt start dev-instance
-openclaw-mgmt stop dev-instance
-openclaw-mgmt restart dev-instance
+openclaw-mgmt start ocdev
+openclaw-mgmt stop ocdev
+openclaw-mgmt restart ocdev
 ```
 
 ### View Logs
 
 ```bash
-openclaw-mgmt logs dev-instance --lines 100
+openclaw-mgmt logs ocdev --lines 100
 ```
 
 ### Proxmox VM Status

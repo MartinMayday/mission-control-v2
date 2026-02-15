@@ -1,0 +1,73 @@
+# OpenCLAW Mission Control - Environment Configuration
+# Copy this to config.yaml and fill in your actual values
+
+# ===========================================
+# PROXMOX CONNECTION
+# ===========================================
+proxmox:
+  host: "hl-pve01"           # Your Proxmox hostname/IP
+  port: 8006                  # Default Proxmox port
+  user: "root@pam"            # PAM authentication
+  # Use ONE of the following:
+  token_id: "YOUR_TOKEN_ID"    # From Proxmox UI: Datacenter > API Tokens
+  token_secret: "YOUR_SECRET"  # Token secret
+  # OR
+  IdentityFile: ~/.ssh/id_ed25519_coder
+  # password: "your_password"
+  verify_ssl: false
+  timeout: 30
+
+# ===========================================
+# OPENCLAW INSTANCES
+# ===========================================
+openclaw_instances:
+  # STAGING - New clone for testing
+  - name: "ocdev"             # "openclaw-staging"
+    host: "192.168.100.203"   # IP of new clone (update after cloning)
+    port: 22
+    user: "nosrc"
+    type: "proxmox"
+    vm_id: 303                 # VMID of new clone (update after cloning)
+    openclaw_port: 18789
+    description: "Staging environment - isolated from production"
+
+  # LIVE - Existing production instance
+  - name: "hl-ocpai01"     # "openclaw-live"
+    host: "192.168.100.202"   # Current openclaw-hl01 IP
+    port: 22
+    user: "nosrc"
+    type: "proxmox"
+    vm_id: 301                 # Current VMID (verify with qm list)
+    openclaw_port: 18789
+    description: "Production OpenCLAW instance"
+
+# ===========================================
+# ORBSTACK (macOS)
+# ===========================================
+orbstack:
+  enabled: false              # Enable if using OrbStack on Mac
+  socket_path: "/var/run/docker.sock"
+
+# ===========================================
+# MONITORING
+# ===========================================
+monitoring:
+  check_interval: 60           # Seconds between health checks
+  health_check_timeout: 10    # Timeout per check
+  alert_on_failure: true      # Send alerts when instances fail
+
+# ===========================================
+# CLI TOOLS (Integration placeholders)
+# ===========================================
+cli_tools:
+  - name: "claude-code"
+    command: "claude"
+    path: "/usr/local/bin/claude"
+    
+  - name: "cursor"
+    command: "cursor"
+    path: "/Applications/Cursor.app/Contents/MacOS/Cursor"
+    
+  - name: "vscode"
+    command: "code"
+    path: "/usr/local/bin/code"
