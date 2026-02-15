@@ -1,0 +1,42 @@
+[project]
+name = "openclaw-mgmt"
+version = "0.1.0"
+description = "Unified Mission Control Center for OpenCLAW Instances"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "proxmoxer>=2.0.1",
+    "paramiko>=3.4.0",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.1",
+    "rich>=13.7.0",
+    "typer>=0.9.0",
+    "tenacity>=8.2.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.12.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.7.0",
+]
+
+[project.scripts]
+openclaw-mgmt = "mission_control.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.10"

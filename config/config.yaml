@@ -1,0 +1,92 @@
+openclaw_instances:
+  - name: dev-instance
+    host: 192.168.1.100
+    port: 22
+    user: root
+    type: proxmox
+    vm_id: 100
+    openclaw_port: 8080
+    description: Development OpenCLAW instance
+
+  - name: staging-instance
+    host: 192.168.1.101
+    port: 22
+    user: root
+    type: proxmox
+    vm_id: 101
+    openclaw_port: 8080
+    description: Staging OpenCLAW instance
+
+  - name: production-instance
+    host: 192.168.1.102
+    port: 22
+    user: root
+    type: proxmox
+    vm_id: 102
+    openclaw_port: 8080
+    description: Production OpenCLAW instance
+
+proxmox:
+  host: proxmox.local
+  port: 8006
+  user: root@pam
+  verify_ssl: false
+  timeout: 30
+
+orbstack:
+  enabled: false
+  socket_path: /var/run/docker.sock
+
+monitoring:
+  check_interval: 60
+  health_check_timeout: 10
+  alert_on_failure: true
+
+cli_tools:
+  - name: claude-code
+    command: claude
+    path: /usr/local/bin/claude
+    
+  - name: kimi-cli
+    command: kimi
+    path: ~/.local/bin/kimi
+    
+  - name: gemini-cli
+    command: gemini
+    path: /usr/local/bin/gemini
+    
+  - name: codex-cli
+    command: codex
+    path: /usr/local/bin/codex
+    
+  - name: ampcode
+    command: ampcode
+    path: /usr/local/bin/ampcode
+    
+  - name: cursor
+    command: cursor
+    path: /Applications/Cursor.app/Contents/MacOS/Cursor
+    
+  - name: vscode
+    command: code
+    path: /usr/local/bin/code
+    
+  - name: kilocode
+    command: kilocode
+    path: ~/.local/bin/kilocode
+    
+  - name: raycast
+    command: raycast
+    path: /Applications/Raycast.app/Contents/MacOS/Raycast
+    
+  - name: verdent
+    command: verdent
+    path: ~/.local/bin/verdent
+    
+  - name: trae
+    command: trae
+    path: ~/.local/bin/trae
+    
+  - name: codebuff
+    command: codebuff
+    path: ~/.local/bin/codebuff
